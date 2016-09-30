@@ -73,6 +73,7 @@ local function setRedLED(value)
     print("Setting the red LED to " .. dutyCycle)
     
     pwm.setduty(red, dutyCycle)
+    pwm.start(red)
 end
 
 local function setGreenLED(value)
@@ -86,6 +87,7 @@ local function setGreenLED(value)
     print("Setting the green LED to " .. dutyCycle)
     
     pwm.setduty(green, dutyCycle)
+    pwm.start(green)
 end
 
 local function setBlueLED(value)
@@ -99,6 +101,7 @@ local function setBlueLED(value)
     print("Setting the blue LED to " .. dutyCycle)
     
     pwm.setduty(blue, dutyCycle)
+    pwm.start(blue)
 end
 
 local function setupBuzzer()
