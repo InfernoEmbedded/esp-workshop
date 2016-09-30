@@ -1,6 +1,7 @@
 dofile("settings.lua")
 
 buttonUser = 1
+buttonTopic = "buttons/" .. myMACAddress
 
 myMACAddress = wifi.sta.getmac()
 
@@ -9,7 +10,7 @@ wifi.sta.config(wifiSSID, wifiPassword)
 wifi.sta.connect()
 
 local function buttonUserCallback(level)
-    mqttClient:publish("buttons/" .. myMACAddress, 1 - level, 0, 0)
+    mqttClient:publish(buttonTopic, 1 - level, 0, 0)
 end
 
 local function wifiConnected()
@@ -21,6 +22,8 @@ local function wifiConnected()
     
     mqttClient:on("connect", function(client)
         print ("MQTT connected")
+	print("Publishing button presses at '" .. buttonTopic .. "'")
+
         gpio.mode(buttonUser, gpio.INT, gpio.PULLUP)
         gpio.trig(buttonUser, "both", buttonUserCallback)
     end)

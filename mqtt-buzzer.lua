@@ -1,6 +1,7 @@
 dofile("settings.lua")
 
 buttonUser = 1
+buttonTopic = "buttons/" .. myMACAddress
 myMACAddress = wifi.sta.getmac()
 
 red = 3
@@ -23,13 +24,15 @@ end
 
 local function buttonUserCallback(level)
     print("Button is " .. level)
-    mqttClient:publish("buttons/" .. myMACAddress, 1 - level, 0, 0)
+    mqttClient:publish(buttonTopic, 1 - level, 0, 0)
 end
 
 local function mqttConnected(client)
     print("MQTT connected")
     gpio.mode(buttonUser, gpio.INT, gpio.PULLUP)
     gpio.trig(buttonUser, "both", buttonUserCallback)
+
+    print("Publishing button presses at '" .. buttonTopic .. "'")
 
     print("Listening for red LED requests at '" .. blueTopic .. "'")
     mqttClient:subscribe(redTopic, 0)
