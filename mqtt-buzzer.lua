@@ -3,11 +3,11 @@ dofile("settings.lua")
 buttonUser = 1
 myMACAddress = wifi.sta.getmac()
 
-redLED = 3
+red = 3
 redTopic = "lights/" .. myMACAddress .. "/red"
-greenLED = 4
+green = 4
 greenTopic = "lights/" .. myMACAddress .. "/green"
-blueLED = 5
+blue = 5
 blueTopic = "lights/" .. myMACAddress .. "/blue"
 
 buzzer = 8
@@ -49,14 +49,14 @@ local function mqttDisconnected(client)
 end
 
 local function setupLEDs()
-    gpio.mode(redLED, gpio.OUTPUT)
-    pwm.setup(redLED, defaultPWMFrequency, 0)
+    gpio.mode(red, gpio.OUTPUT)
+    pwm.setup(red, defaultPWMFrequency, 0)
 
-    gpio.mode(greenLED, gpio.OUTPUT)
-    pwm.setup(greenLED, defaultPWMFrequency, 0)
+    gpio.mode(green, gpio.OUTPUT)
+    pwm.setup(green, defaultPWMFrequency, 0)
 
-    gpio.mode(blueLED, gpio.OUTPUT)
-    pwm.setup(blueLED, defaultPWMFrequency, 0)
+    gpio.mode(blue, gpio.OUTPUT)
+    pwm.setup(blue, defaultPWMFrequency, 0)
 end
 
 local function setRedLED(value)
@@ -69,7 +69,7 @@ local function setRedLED(value)
     local dutyCycle = math.floor(value * 1023)
     print("Setting the red LED to " .. dutyCycle)
     
-    pwm.setduty(redLED, dutyCycle)
+    pwm.setduty(red, dutyCycle)
 end
 
 local function setGreenLED(value)
@@ -82,7 +82,7 @@ local function setGreenLED(value)
     local dutyCycle = math.floor(value * 1023)
     print("Setting the green LED to " .. dutyCycle)
     
-    pwm.setduty(greenLED, dutyCycle)
+    pwm.setduty(green, dutyCycle)
 end
 
 local function setBlueLED(value)
@@ -95,7 +95,7 @@ local function setBlueLED(value)
     local dutyCycle = math.floor(value * 1023)
     print("Setting the blue LED to " .. dutyCycle)
     
-    pwm.setduty(blueLED, dutyCycle)
+    pwm.setduty(blue, dutyCycle)
 end
 
 local function setupBuzzer()
@@ -104,7 +104,7 @@ end
 
 local function stopBuzzer()
     pwm.stop(buzzer)
-    pwm.setclock(blueLED, defaultPWMFrequency)
+    pwm.setclock(blue, defaultPWMFrequency)
 end
 
 local function fireBuzzer(message)

@@ -2,7 +2,9 @@ dofile("settings.lua")
 
 buttonUser = 1
 myMACAddress = wifi.sta.getmac()
-blueLED = 5
+red = 3
+green = 4
+blue = 5
 blueTopic = "lights/" .. myMACAddress .. "/blue"
 
 local function connectWifi()
@@ -29,8 +31,14 @@ local function mqttDisconnected(client)
 end
 
 local function setupLEDs()
-    gpio.mode(blueLED, gpio.OUTPUT)
-    pwm.setup(blueLED, 1000, 0)
+    gpio.mode(red, gpio.OUTPUT)
+    gpio.mode(green, gpio.OUTPUT)
+    gpio.mode(blue, gpio.OUTPUT)
+
+    gpio.write(red, gpio.LOW)
+    gpio.write(green, gpio.LOW)
+
+    pwm.setup(blue, 1000, 0)
 end
 
 local function setBlueLED(value)
@@ -45,7 +53,7 @@ local function setBlueLED(value)
     local dutyCycle = math.floor(value * 1023)
     print("Setting the blue LED to " .. dutyCycle)
     
-    pwm.setduty(blueLED, dutyCycle)
+    pwm.setduty(blue, dutyCycle)
 end
 
 local function receiveMqttMessage(connection, topic, message)
