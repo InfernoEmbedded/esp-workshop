@@ -1,8 +1,9 @@
 dofile("settings.lua")
 
+myMACAddress = wifi.sta.getmac()
+
 buttonUser = 1
 buttonTopic = "buttons/" .. myMACAddress
-myMACAddress = wifi.sta.getmac()
 
 red = 3
 redTopic = "lights/" .. myMACAddress .. "/red"

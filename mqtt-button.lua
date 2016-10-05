@@ -1,9 +1,10 @@
 dofile("settings.lua")
 
+myMACAddress = wifi.sta.getmac()
+
 buttonUser = 1
 buttonTopic = "buttons/" .. myMACAddress
 
-myMACAddress = wifi.sta.getmac()
 
 wifi.setmode(wifi.STATION)
 wifi.sta.config(wifiSSID, wifiPassword)
