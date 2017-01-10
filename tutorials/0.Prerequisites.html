@@ -1,0 +1,108 @@
+<html>
+<body>
+	<h1>Prerequisites</h1>
+	<p>Note: Known-good versions of the prequisites are available is
+		the git repository for this workshop.</p>
+	<h2>All</h2>
+	<ul>
+		<li>Download the Paho MQTT client from <a
+			href="http://www.eclipse.org/paho/clients/tool/">http://www.eclipse.org/paho/clients/tool/</a></li>
+		<li>Download or clone a copy of the workshop repository to your
+			home directory, from <a
+			href="https://github.com/InfernoEmbedded/esp-workshop">https://github.com/InfernoEmbedded/esp-workshop</a>
+		</li>
+		<li>If you have a firewall enabled, allow traffic on port 1883
+			(MQTT)</li>
+		<li>Install NodeJS 4 (not 3 or 5), saved in
+			esp-workshop/windows_x64 - <a
+			href="https://nodejs.org/en/download/package-manager/">https://nodejs.org/en/download/package-manager/</a>
+		</li>
+		<li>Install NodeRed from <a
+			href="http://nodered.org/docs/getting-started/installation.html">http://nodered.org/docs/getting-started/installation.html</a></li>
+		<li>Flash the board with NodeMCU firmware (only required is your
+			board does not already have the NodeMCU firmware installed)</li>
+		<ul>
+			<li>Download and extract the latest ESP8266 NONOS SDK from <a
+				href="https://espressif.com/en/support/download/sdks-demos">https://espressif.com/en/support/download/sdks-demos</a></li>
+			<li>Build the firmware using the Cloud build service <a
+				href="https://nodemcu-build.com">https://nodemcu-build.com</a>,
+				Include:<br />
+			<ul>
+					<li>ADC</li>
+					<li>bit</li>
+					<li>DHT</li>
+					<li>enduser_setup</li>
+					<li>file</li>
+					<li>GPIO</li>
+					<li>HTTP</li>
+					<li>MQTT</li>
+					<li>net</li>
+					<li>node</li>
+					<li>1Wire</li>
+					<li>PWM</li>
+					<li>timer</li>
+					<li>UART</li>
+					<li>WiFi</li>
+					<li>Flash the firmware, this example uses the firmware
+						included in the repository, but you may want your own (see above)
+						instead: <span style="font-family: courier new, courier;">esptool.py
+							--port /dev/ttyUSB0 write_flash -fm dio -fs 32m 0x00000
+							~/esp-workshop/nodemcu-master-15-modules-2016-07-22-03-05-09-float.bin
+							0x7c000
+							~/esp-workshop/sdk/ESP8266_NONOS_SDK/bin/esp_init_data_default.bin</span>
+					</li>
+				</ul></li>
+		</ul>
+	</ul>
+	<h2>Windows</h2>
+	<ul>
+		<li>Install CH341 Windows Drivers, saved in
+			esp-workshop/windows_x64/drivers - <a
+			href="http://www.wch.cn/download/CH341SER_ZIP.html">http://www.wch.cn/download/CH341SER_ZIP.html</a>
+		</li>
+		<li>Install ESPTool, already installed in
+			esp-workshop/windows_x64, this is only needed if you need to flash
+			the ESP8266 module. <a
+			href="https://github.com/igrr/esptool-ck/releases">https://github.com/igrr/esptool-ck/releases</a>
+		</li>
+		<li>Install the Java Runtime Environment (JRE) - <a
+			href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">http://www.oracle.com/technetwork/java/javase/downloads/index.html</a></li>
+	</ul>
+	<h2>Linux</h2>
+	<ul>
+		<li>Install Mosquitto (Fedora: dnf install mosquitto,
+			Debian/Ubuntu: apt-get install mosquitto)</li>
+		<li>Install ESPTool, this is only needed if you need to flash the
+			ESP8266 module. (Fedora: dnf install esptool, Debian/Ubuntu: apt-get
+			install esptool)</li>
+		<li>Install java (Fedora: dnf install java, Debian/Ubuntu:
+			apt-get install default-jre)</li>
+		<li>Add your user the the dialout group so you can access the
+			serial port (edit /etc/group, <span
+			style="font-family: courier new, courier;">sudo gpasswd -a
+				${USER} dialout &amp;&amp; newgrp dialout</span>)
+		</li>
+	</ul>
+	<h1>Kit Contents</h1>
+	<p>
+		<span class="floatright"><a
+			href="images/kitcontents.jpg"><img
+				style="float: right; clear: right;"
+				src="images/kitcontents.jpg"
+				alt="Workshop kit contents" height="149" width="200" /></a></span>
+	</p>
+	<p>Please check to ensure you have all the parts to your kit.
+		Clockwise from the top, the parts are:</p>
+	<ul>
+		<li>Breadboard Jumper Leads</li>
+		<li>MicroUSB Cable</li>
+		<li>ESP8266 Module (<a
+			href="https://www.wemos.cc/product/d1-mini.html">Wemos D1 Mini</a> or
+			clone)
+		</li>
+		<li>Breadboard</li>
+		<li><a href="https://tkkrlab.nl/wiki/Arduino_37_sensors">37
+				Module Sensor Kit</a></li>
+	</ul>
+</body>
+</html>
