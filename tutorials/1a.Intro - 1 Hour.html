@@ -1,0 +1,370 @@
+<h1>Exercise 1 - Lighting an LED</h1>
+<p>
+	<span class="floatright"><a href="images/breadboard_0.png"><img
+			style="float: right; clear: right;" src="images/breadboard_0.png"
+			alt="" height="83" width="200" /></a></span><span class="floatright"><a
+		href="images/rgbsmd.jpg"><img style="float: right; clear: right;"
+			src="images/rgbsmd.jpg" alt="RGB LED module" height="200" width="200" /></a></span><span
+		class="floatright"><a href="images/esp-exercise1.jpg"><img
+			style="float: right; clear: right;" src="images/esp-exercise1.jpg"
+			alt="Exercise 1 board layout" height="103" width="200" /></a></span>
+</p>
+<p>Computers process binary data, a series of bits representing true
+	and false. When interacting with the real world, modern computers
+	generally represent this as a high and low voltage. In particular, with
+	the ESP8266, true is ~3.3V, and false is around 0V.</p>
+<p>In this exercise, we will set up your board so you can turn an
+	LED on and off. We will be working with a breadboard, the ESP8266
+	module, and the RGB LED module.</p>
+<p>Breadboards have internal wiring which make it easy to prototype
+	electronic circuits on them. The breadboard diagram adjacent shows the
+	typical internal connections (your board may vary slightly). There are
+	horizontal busbars for distributing power, and smaller vertical strips
+	in the middle for connecting devices.</p>
+<ul>
+	<li>Plug your ESP8266 module into the breadboard, across the
+		centre connectors, on the left hand side, with the USB connector
+		pointing left. If your breadboard is brand new, it may be a little
+		stiff, so be careful not to bend the pins. It may help to wiggle it
+		back and forth to allow the pins to settle. The top pins should be in
+		row B, and the bottom pins in row I.</li>
+	<li>Plug your RGB LED module to the right of the ESP8266, in the
+		top half of the board, with the LED facing you. It doesn't matter
+		which column it is installed in, just make sure it is horizontal so
+		that the pins are not shorted.</li>
+	<li>Plug a black jumper wire from the G port on the ESP8266 to the
+		leftmost pin of the top (-) black/blue busbar. This provides ground to
+		the top busbar, which we will use to connect other devices to. Note
+		that on the workshop breadboard, the busbar only extends half the
+		length of the board.</li>
+	<li>Plug a red jumper wire from the 3v3 port on the ESP8266 to the
+		top (+) red busbar. This will provide power to our devices later.</li>
+	<li>Now that the busbars are connected to the ESP, we can connect
+		our devices. Look on the board of the LED where you should see that
+		each of the legs are labelled. Find which column the negative (-) leg
+		is plugged in to, and connect this column to the (-) busbar with a
+		black jumper wire.</li>
+	<li>Plug red, green and blue wires from D3, D4 &amp; D5 on the
+		ESP8266 to the R, G &amp; B pins on the LED.</li>
+	<li>Double-check the connections on your board, it should look
+		like the image to the right.</li>
+	<li>Plug the ESP8266 into the computer via the USB port.</li>
+	<li>Launch ESPlorer (Windows: run esplorer.bat Linux: run java
+		-jar ESPlorer.jar)</li>
+	<li>Connect to the ESP8266: select the correct serial port, set
+		the speed to 115200, hit "Open". You should see the something like the
+		window below, with a '&gt; ' prompt. If not, you can press the reset
+		button on the ESP8266 to restart it. Don't worry if you see a message
+		saying "cannot open init.lua" - this is normal.</li>
+</ul>
+<p>
+	<a href="images/esplorer-connect_0.png"><img
+		src="images/esplorer-connect_0.png"
+		alt="ESPlorer connection diagram" height="704" width="1024" /></a>
+</p>
+<ul>
+	<li>In the bottom right panel (left of the "Send" button), enter
+		the following, hitting "Send" after each line</li>
+	<ul>
+		<li>red=3</li>
+		<li>green=4</li>
+		<li>blue=5</li>
+		<li>gpio.mode(red, gpio.OUTPUT) -- (this sets the pin denoted by
+			the led variable to be an output)</li>
+		<li>gpio.mode(green, gpio.OUTPUT)</li>
+		<li>gpio.mode(blue, gpio.OUTPUT)</li>
+		<li>gpio.write(red, gpio.LOW) -- (the led should turn off)</li>
+		<li>gpio.write(green, gpio.LOW)</li>
+		<li>gpio.write(blue, gpio.LOW)</li>
+		<li>gpio.write(red, gpio.HIGH) -- (the led should turn on)</li>
+	</ul>
+	<li>What happened? Why do you think that happened? How could you
+		fix it?</li>
+	<li>How do you get the other colours to light?</li>
+</ul>
+<h2>References</h2>
+<ul>
+	<li><a
+		href="https://nodemcu.readthedocs.io/en/master/en/modules/gpio/">https://nodemcu.readthedocs.io/en/master/en/modules/gpio/</a></li>
+	<li><a
+		href="https://tkkrlab.nl/wiki/Arduino_KY-009_3-color_full-color_LED_SMD_modules">https://tkkrlab.nl/wiki/Arduino_KY-009_3-color_full-color_LED_SMD_modules</a></li>
+</ul>
+<h1>Exercise 2 - Reading a switch</h1>
+<p>
+	<span class="floatright"><a href="images/button.jpg"><img
+			style="float: right; clear: right;" src="images/button.jpg"
+			alt="Button module" height="261" width="200" /></a></span>
+</p>
+<p>As well as being able to output data, computers can read data in
+	from their I/O lines. We can force a line to 0V by pulling it to ground
+	with a switch, but what happens when the switch is not engaged? The I/O
+	line is left floating, and will give random readings, which will result
+	in the switch being falsely triggered. To correct this, the module adds
+	a resistor to the 3.3V, so that when the switch is not pressed, the
+	line reads true.</p>
+<ul>
+	<li>Insert the switch into the breadboard, alongside the LED</li>
+	<li>Connect - on the switch to the (-) busbar using a black wire</li>
+	<li>Connect the middle pin to the (+) busbar using a red wire</li>
+	<li>Connect S on the switch to D1 on the ESP8266 with a coloured
+		wire</li>
+	<li>Enter the following:</li>
+	<ul>
+		<li>button = 1</li>
+		<li>gpio.mode(button, gpio.INPUT, gpio.PULLUP)</li>
+		<li>print(gpio.read(button))</li>
+	</ul>
+	<li>What does it print? Repeat the last command while holding down
+		the button. What does it print now? Why does it behave like that?</li>
+</ul>
+<h2>References</h2>
+<ul>
+	<li><a
+		href="https://learn.sparkfun.com/tutorials/pull-up-resistors">https://learn.sparkfun.com/tutorials/pull-up-resistors</a></li>
+	<li><a
+		href="https://tkkrlab.nl/wiki/Arduino_KY-004_Key_switch_module">https://tkkrlab.nl/wiki/Arduino_KY-004_Key_switch_module</a></li>
+</ul>
+<h1>Exercise 3 - Event based programming</h1>
+<p>
+	One modern programming technique is known as "<a
+		href="https://en.wikipedia.org/wiki/Event-driven_programming">event
+		based programming</a>". This technique reduces development effort by
+	allowing the program to respond to certain events when they occur,
+	instead of repeatedly checking that an event has occurred. As a first
+	step, let's respond to a button press.
+</p>
+<ul>
+	<li>Press "Open" in the top left, then select "buttontest.lua"</li>
+	<li>Press the "Save to ESP" button at the bottom, the program
+		should be uploaded to the ESP8266 and run automatically</li>
+	<li>Press the button you plugged in, what happened? Why did it
+		behave like this?</li>
+	<li>Read the <a
+		href="https://nodemcu.readthedocs.io/en/master/en/modules/gpio/#gpiotrig">gpio.trig</a>
+		documentation, can you alter the program to only send a message when
+		the button is pressed?
+	</li>
+</ul>
+<h2>References</h2>
+<ul>
+	<li><a
+		href="https://nodemcu.readthedocs.io/en/master/en/modules/gpio/">https://nodemcu.readthedocs.io/en/master/en/modules/gpio/</a></li>
+</ul>
+<h1>Exercise 4 - Toggling an LED</h1>
+<p>In home automation, we often want to toggle the state of
+	something every time a switch is pressed. To do this, we need to keep
+	track of the current state so we can decide what the next state is.</p>
+<ul>
+	<li>Open &amp; save "button-led.lua"</li>
+	<li>What happens when you press the button? Why does it behave
+		like this?</li>
+</ul>
+<h2>References</h2>
+<ul>
+	<li><a
+		href="https://tkkrlab.nl/wiki/Arduino_KY-006_Small_passive_buzzer_module">https://tkkrlab.nl/wiki/Arduino_KY-006_Small_passive_buzzer_module</a></li>
+	<li><a
+		href="https://nodemcu.readthedocs.io/en/master/en/modules/pwm/">https://nodemcu.readthedocs.io/en/master/en/modules/pwm/</a></li>
+	<li><a
+		href="https://nodemcu.readthedocs.io/en/master/en/modules/tmr/#tmrdelay">https://nodemcu.readthedocs.io/en/master/en/modules/tmr/</a></li>
+</ul>
+<h1>Exercise 5 - Getting connected</h1>
+<p>Congratulations! If you've made it this, you have learnt enough
+	to work with the bulk of the modules in your kit. Now, the real power
+	of the ESP8266 is that it can connect to Wifi networks, and interact
+	with other computers.</p>
+<p>First, let's see what wifi networks are around.</p>
+<ul>
+	<li>Open &amp; save "wifi-list.lua"</li>
+	<li>After a few seconds, it should list which networks are
+		available, write down the one you should be using (ask your instructor
+		if you are unsure)</li>
+	<li>Open "settings.lua", and update the SSID with the one you
+		identified previously, then save it to the ESP8266</li>
+	<li>Open, save and run "wifi-connect.lua"</li>
+	<li>After a few seconds, it should report that it has connected</li>
+</ul>
+<p>Now, let's start up the Mosquitto server. Mosquitto implements
+	the MQTT message passing protocol, which allows computers to share
+	messages without requiring knowledge of the source of destination. This
+	server will allow us to bring together many modules and allow them to
+	interact without requiring them to know about each other. Messages are
+	communicated on topics, so every message that is sent must specify a
+	topic. To receive messages, we need to tell the server which topics we
+	want to listen for.</p>
+<ul>
+	<li>On Windows, doubleclick on
+		esp-workshop\windows_x64\mosquitto\mosquitto.exe (this will start a
+		black window), on Linux, in a new shell, type 'mosquitto'</li>
+	<li>On Windows, doubleclick on esp-workshop\windows_x64\paho.exe,
+		on Linux, run 'esp-workshop/linux_x64/paho'</li>
+	<li>Create a new connection by hitting the green + in the top left
+		(the default connection settings should work)</li>
+	<li><a href="images/paho-connection.png"><img
+			src="images/paho-connection.png" alt="" height="562"
+			width="1024" /></a></li>
+	<li>Hit connect, the log in the right should say "Connected"</li>
+	<li>Create a subscription by hitting the green '+' under
+		Subscriptions, then enter '#' as the topic (this shows all messages)</li>
+	<li><a href="images/paho-subscription.png"><img
+			src="images/paho-subscription.png"
+			alt="Adding a Paho subscription" height="562" width="1024" /></a></li>
+	<li>Hit the 'Subscribe' button, the log should show "Subscribed #"</li>
+	<li>Publish a test message with the topic "test" and the message
+		"hello", the log should the message being published and received</li>
+	<li><a href="images/paho-publish.png"><img
+			src="images/paho-publish.png"
+			alt="Pulishing a message in Paho" height="562" width="1024" /></a></li>
+	<li>Identify the IP address of your computer:</li>
+	<ul>
+		<li>In a shell/command prompt, for Windows, run "ipconfig /all",
+			for Linux, run "ifconfig -a"</li>
+		<li>Write down the IP address of the network interface you are
+			using for the workshop (probably a wireless interface, wlXXX in
+			Linux)</li>
+	</ul>
+	<li>Edit settings.lua and enter the IP address for
+		mqttServerAddress (replace xx.xx.xx.xx)</li>
+	<li>Open &amp; save "hello-mqtt.lua"</li>
+	<li>You should see a new received message from the ESP8266</li>
+	<li>Can you change the topic and message that the device sends?</li>
+</ul>
+<h2>References</h2>
+<ul>
+	<li><a
+		href="https://nodemcu.readthedocs.io/en/master/en/modules/mqtt/">https://nodemcu.readthedocs.io/en/master/en/modules/mqtt/</a></li>
+</ul>
+<h1>Exercise 6 - Sending a message on button press</h1>
+<p>Now that you know how to send messages, let's use what we learnt
+	earlier to tie the button presses with message sending. Here, we have
+	added the button press code, but only activate it once the MQTT session
+	is connected. Instead of lighting an LED, the button callback now sends
+	a message to the server.</p>
+<p>Observe that in this example, we use the MAC address (physical
+	unique network address) of the Wifi interface as a unique identifier.
+	This way, we can have multiple modules speaking to the same server, and
+	we can tell which one sent the message.</p>
+<ul>
+	<li>Open &amp; save "mqtt-button.lua"</li>
+	<li>Press the button and observe the messages received in Paho</li>
+</ul>
+<h1>Exercise 7 - Receiving messages</h1>
+<p>Here, we build on top of the previous exercise by subscribing to
+	a test message.</p>
+<ul>
+	<li>Open &amp; save "mqtt-subscribe.lua"</li>
+	<li>Try publishing messages to the "test" topic via Paho. What
+		happens on the remote node?</li>
+	<li>Now try using the topic that the ESP8266 said it was listening
+		on. Now what happened?</li>
+</ul>
+<h1>Exercise 8 - Switching an LED based on received messages</h1>
+<p>Let's now add to the previous exercise by switching the blue LED
+	based on incoming messages. Again, we use the MAC address to uniquely
+	identify our device.</p>
+<ul>
+	<li>Open &amp; save "mqtt-led.lua"</li>
+	<li>Look at the function "setBlueLED", what values can you send
+		for the message? What can you do with the LED?</li>
+	<li>Turn the LED on using the Paho client and what you have
+		figured out from the previous step</li>
+	<li>Can you expand the program to work with the red and green LEDs
+		too?</li>
+</ul>
+<h2>References</h2>
+<ul>
+	<li><a href="http://lua-users.org/wiki/PatternsTutorial">http://lua-users.org/wiki/PatternsTutorial</a></li>
+</ul>
+<h1>Exercise 9 - Coordinating interaction with NodeRed</h1>
+<p>We're done with the device programming for now, instead, we're
+	going to use NodeRed to coordinate the interactions. First, let's use
+	NodeRed to toggle our LED when our button is pressed.</p>
+<ul>
+    <li>Open &amp; save "mqtt-buzzer.lua"</li>
+	<li>Windows: From a Node-JS Command Prompt, run <span
+		style="font-family: courier new, courier;">node-red</span> Linux: Run
+		<span style="font-family: courier new, courier;">node-red</span>, then
+		point the FireFox web browser at <a href="http://localhost:1880">http://localhost:1880</a></li>
+	<li>Drag an Input MQTT node from the left panel to the current
+		flow in the centre</li>
+	<li>Double click on the new node, then add a new server</li>
+	<li><a href="images/nodered-mqtt.png"><img
+			src="images/nodered-mqtt.png" alt="" height="562"
+			width="1024" /></a></li>
+	<li>Set the hostname to 'localhost' and click Add</li>
+	<li><a href="images/nodered-mqtt-config.png"><img
+			src="images/nodered-mqtt-config.png" alt="" height="562"
+			width="1024" /></a></li>
+	<li>Set the topic to the button topic from your device, the QoS to
+		0, and the name to "Button"</li>
+	<li><a href="images/nodered-mqtt-button.png"><img
+			src="images/nodered-mqtt-button.png"
+			alt="Configure MQTT input node in NodeRed" height="562" width="1024" /></a></li>
+	<li>Drag on output/debug node from the left panel, and drag a
+		connection from the button to the new debug node</li>
+	<li><a href="images/nodered-debug.png"><img
+			src="images/nodered-debug.png" alt="" height="562"
+			width="1024" /></a></li>
+	<li>Press Deploy and wait for the "Successfully deployed" message.
+		You should see a "Connected" message below the button</li>
+	<li>Select the Debug tab on the right panel</li>
+	<li>Press the button on your device, you should see messages
+		appear as you press and release the button</li>
+	<li>Drag an output MQTT node into the flow, Set the topic to your
+		blue LED</li>
+	<li><a href="images/nodered-mqtt-led.png"><img
+			src="images/nodered-mqtt-led.png" alt="" height="562"
+			width="1024" /></a></li>
+	<li>Connect the new node to your button</li>
+	<li>Deploy your changes</li>
+	<li>Press the button on your device, what happens?</li>
+</ul>
+<h1>Exercise 10 - Toggling with NodeRed</h1>
+<ul>
+	<li>Drag in a function node, Name it "Toggle" and add the
+		following</li>
+	<ul>
+		<li>// Only toggle the LED if the button is pressed<br />if
+			(msg.payload == "1") {<br /> // Set an inital value<br />
+			context.state = context.state | false;<br /> <br /> // Toggle the
+			state<br /> context.state = !context.state;<br /> <br /> // Set
+			the output to 1 if the state is true<br /> // or 0 if false<br />
+			msg.payload = (context.state | false) ? "1" : "0";<br /> <br />
+			return msg;<br />} else {<br /> return;<br />}
+		</li>
+	</ul>
+	<li><a href="images/nodered-toggle.png"><img
+			src="images/nodered-toggle.png" alt="" height="562"
+			width="1024" /></a></li>
+	<li>Connect the toggle between the button and the blue LED</li>
+	<li>Connect the debug module to the toggle output</li>
+	<li>Press the button on your devices, what happens with the debug
+		output and the LED</li>
+</ul>
+<h1>Exercise 11 - Multiple device interaction</h1>
+<p>The power of these devices is unleashed when you have many
+	devices in the network, and they can interact.</p>
+<ul>
+	<li>Form small groups, and nominate one laptop to be the MQTT
+		server for the group</li>
+	<li>Update settings.lua on all the nodes to specify the IP address
+		of that server</li>
+	<li>Rerun mqtt-buzzer.lua on all the nodes to ensure the latest
+		settings are used</li>
+	<li>Identify the address of someone else's node in your group,
+		alter the flow in NodeRed so that your button controls their LED</li>
+	<li>Try expanding your device to use different sensors from the
+		kit. How would you connect them? Does the code on the device have to
+		be changed to support it? What changes in NodeRed do you have to make
+		to read different sensors?</li>
+</ul>
+<h1>Resources</h1>
+<ul>
+	<li>Sensor description <a
+		href="https://tkkrlab.nl/wiki/Arduino_37_sensors">https://tkkrlab.nl/wiki/Arduino_37_sensors</a>
+		<a
+		href="http://linksprite.com/wiki/index.php5?title=Advanced_Sensors_Kit_for_Arduino">http://linksprite.com/wiki/index.php5?title=Advanced_Sensors_Kit_for_Arduino</a></li>
+	<li>NodeMCU <a href="http://www.nodemcu.com/index_en.html">http://www.nodemcu.com/</a></li>
+	<li>Wemos D1 Mini <a
+		href="https://www.wemos.cc/product/d1-mini.html">https://www.wemos.cc/product/d1-mini.html</a></li>
+</ul>
