@@ -162,25 +162,7 @@
 		href="https://nodemcu.readthedocs.io/en/master/en/modules/gpio/">https://nodemcu.readthedocs.io/en/master/en/modules/gpio/</a></li>
 	<li><a href="https://en.wikipedia.org/wiki/Switch#Contact_bounce">https://en.wikipedia.org/wiki/Switch#Contact_bounce</a></li>
 </ul>
-<h1>Exercise 4 - Toggling an LED</h1>
-<p>In home automation, we often want to toggle the state of
-	something every time a switch is pressed. To do this, we need to keep
-	track of the current state so we can decide what the next state is.</p>
-<ul>
-	<li>Open &amp; save "button-led.lua"</li>
-	<li>What happens when you press the button? Why does it behave
-		like this?</li>
-</ul>
-<h2>References</h2>
-<ul>
-	<li><a
-		href="https://tkkrlab.nl/wiki/Arduino_KY-006_Small_passive_buzzer_module">https://tkkrlab.nl/wiki/Arduino_KY-006_Small_passive_buzzer_module</a></li>
-	<li><a
-		href="https://nodemcu.readthedocs.io/en/master/en/modules/pwm/">https://nodemcu.readthedocs.io/en/master/en/modules/pwm/</a></li>
-	<li><a
-		href="https://nodemcu.readthedocs.io/en/master/en/modules/tmr/#tmrdelay">https://nodemcu.readthedocs.io/en/master/en/modules/tmr/</a></li>
-</ul>
-<h1>Exercise 5 - Getting connected</h1>
+<h1>Exercise 4 - Getting connected</h1>
 <p>Congratulations! If you've made it this far, you have learnt
 	enough to work with the bulk of the modules in your kit. Now, the real
 	power of the ESP8266 is that it can connect to Wifi networks, and
@@ -245,7 +227,7 @@
 	<li><a
 		href="https://nodemcu.readthedocs.io/en/master/en/modules/mqtt/">https://nodemcu.readthedocs.io/en/master/en/modules/mqtt/</a></li>
 </ul>
-<h1>Exercise 6 - Sending a message on button press</h1>
+<h1>Exercise 5 - Sending a message on button press</h1>
 <p>Now that you know how to send messages, let's use what we learnt
 	earlier to tie the button presses with message sending. Here, we have
 	added the button press code, but only activate it once the MQTT session
@@ -259,7 +241,7 @@
 	<li>Open &amp; save "mqtt-button.lua"</li>
 	<li>Press the button and observe the messages received in Paho</li>
 </ul>
-<h1>Exercise 7 - Receiving messages</h1>
+<h1>Exercise 6 - Receiving messages</h1>
 <p>Here, we build on top of the previous exercise by subscribing to
 	a test message.</p>
 <ul>
@@ -269,7 +251,7 @@
 	<li>Now try using the topic that the ESP8266 said it was listening
 		on. Now what happened?</li>
 </ul>
-<h1>Exercise 8 - Switching an LED based on received messages</h1>
+<h1>Exercise 7 - Switching an LED based on received messages</h1>
 <p>Let's now add to the previous exercise by switching the blue LED
 	based on incoming messages. Again, we use the MAC address to uniquely
 	identify our device.</p>
@@ -286,7 +268,7 @@
 <ul>
 	<li><a href="http://lua-users.org/wiki/PatternsTutorial">http://lua-users.org/wiki/PatternsTutorial</a></li>
 </ul>
-<h1>Exercise 9 - Coordinating interaction with NodeRed</h1>
+<h1>Exercise 8 - Coordinating interaction with NodeRed</h1>
 <p>We're done with the device programming for now, instead, we're
 	going to use NodeRed to coordinate the interactions. First, let's use
 	NodeRed to toggle our LED when our button is pressed.</p>
@@ -326,7 +308,7 @@
 	<li>Deploy your changes</li>
 	<li>Press the button on your device, what happens?</li>
 </ul>
-<h1>Exercise 10 - Toggling with NodeRed</h1>
+<h1>Exercise 9 - Toggling with NodeRed</h1>
 <ul>
 	<li>Drag in a function node, Name it "Toggle" and add the
 		following</li>
@@ -356,7 +338,7 @@ if (msg.payload == "1") {
 	<li>Press the button on your devices, what happens with the debug
 		output and the LED</li>
 </ul>
-<h1>Exercise 11 - Multiple device interaction</h1>
+<h1>Exercise 10 - Multiple device interaction</h1>
 <p>The power of these devices is unleashed when you have many
 	devices in the network, and they can interact.</p>
 <ul>
