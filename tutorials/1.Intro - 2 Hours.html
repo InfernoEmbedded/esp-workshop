@@ -48,9 +48,10 @@
 		ESP8266 to the R, G &amp; B pins on the LED.</li>
 	<li>Double-check the connections on your board, it should look
 		like the image to the right.</li>
-	<li>Plug the ESP8266 into the computer via the USB port.</li>
-	<li>Launch ESPlorer (Windows: run esplorer.bat Linux: run java
-		-jar ESPlorer.jar)</li>
+    <li>Plug the ESP8266 into the computer via the USB port. This should be done
+        before the next step so that the serial port can be detected.</li>
+    <li>Launch ESPlorer (Windows: run: <code>esplorer.bat</code> Linux: run
+       <code>java -jar ESPlorer.jar</code>)</li>
 	<li>Connect to the ESP8266: select the correct serial port, set
 		the speed to 115200, hit "Open". You should see the something like the
 		window below, with a '&gt; ' prompt. If not, you can press the reset
@@ -65,7 +66,7 @@
 <ul>
 	<li>In the bottom right panel (left of the "Send" button), enter
 		the following, hitting "Send" after each line</li>
-	<ul>
+	<ul><code>
 		<li>red=3</li>
 		<li>green=4</li>
 		<li>blue=5</li>
@@ -77,9 +78,9 @@
 		<li>gpio.write(green, gpio.LOW)</li>
 		<li>gpio.write(blue, gpio.LOW)</li>
 		<li>gpio.write(red, gpio.HIGH) -- (the led should turn on)</li>
-	</ul>
-	<li>What happened? Why do you think that happened? How could you
-		fix it?</li>
+	</code></ul>
+    <li>What happened? Why do you think that happened? How could you
+        fix it without changing the software?</li>
 	<li>How do you get the other colours to light?</li>
 </ul>
 <h2>References</h2>
@@ -104,12 +105,12 @@
 </p>
 <ul>
 	<li>Enter the following:</li>
-	<ul>
+	<ul><code>
 		<li>pwm.setup(red, 1000, 1023)</li>
 		<li>pwm.start(red) -- (the LED should turn on)</li>
 		<li>pwm.setduty(red, 0) -- (the LED should turn off)</li>
 		<li>pwm.setduty(red, 511) -- (the LED should be dimmer)</li>
-	</ul>
+	</code></ul>
 	<li>How do you set the brightness to 25% and 75% brightness? What
 		is your perception of those brightnesses?</li>
 	<li>Can you mix colours to get cyan, magenta and yellow?</li>
@@ -141,11 +142,11 @@
 	<li>Connect S on the switch to D1 on the ESP8266 with a coloured
 		wire</li>
 	<li>Enter the following:</li>
-	<ul>
+	<ul><code>
 		<li>button = 1</li>
 		<li>gpio.mode(button, gpio.INPUT, gpio.PULLUP)</li>
 		<li>print(gpio.read(button))</li>
-	</ul>
+	</code></ul>
 	<li>What does it print? Repeat the last command while holding down
 		the button. What does it print now? Why does it behave like that?</li>
 </ul>
@@ -230,7 +231,7 @@
 		href="https://nodemcu.readthedocs.io/en/master/en/modules/tmr/#tmrdelay">https://nodemcu.readthedocs.io/en/master/en/modules/tmr/</a></li>
 </ul>
 <h1>Exercise 7 - Getting connected</h1>
-<p>Congratulations! If you've made it this, you have learnt enough
+<p>Congratulations! If you've made it this far, you have learnt enough
 	to work with the bulk of the modules in your kit. Now, the real power
 	of the ESP8266 is that it can connect to Wifi networks, and interact
 	with other computers.</p>
@@ -398,16 +399,23 @@
 <ul>
 	<li>Drag in a function node, Name it "Toggle" and add the
 		following</li>
-	<ul>
-		<li>// Only toggle the LED if the button is pressed<br />if
-			(msg.payload == "1") {<br /> // Set an inital value<br />
-			context.state = context.state | false;<br /> <br /> // Toggle the
-			state<br /> context.state = !context.state;<br /> <br /> // Set
-			the output to 1 if the state is true<br /> // or 0 if false<br />
-			msg.payload = (context.state | false) ? "1" : "0";<br /> <br />
-			return msg;<br />} else {<br /> return;<br />}
-		</li>
-	</ul>
+    <ul>
+        <li><pre><code>// Only toggle the LED if the button is pressed
+if (msg.payload == "1") {
+    // Set an inital value
+    context.state = context.state | false;
+
+    // Toggle the state
+    context.state = !context.state;
+
+    // Set the output to 1 if the state is true or 0 if false
+    msg.payload = (context.state | false) ? "1" : "0";
+
+    return msg;
+} else {
+    return;
+}</code></pre></li>
+    </ul>
 	<li><a href="images/nodered-toggle.png"><img
 			src="images/nodered-toggle.png" alt="" height="562"
 			width="1024" /></a></li>
