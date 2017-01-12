@@ -48,10 +48,12 @@
 		ESP8266 to the R, G &amp; B pins on the LED.</li>
 	<li>Double-check the connections on your board, it should look
 		like the image to the right.</li>
-	<li>Plug the ESP8266 into the computer via the USB port. This should be done
-	    before the next step so that the serial port can be detected.</li>
-	<li>Launch ESPlorer (Windows: run: <code>esplorer.bat</code> Linux: run
-	   <code>java -jar ESPlorer.jar</code>)</li>
+	<li>Plug the ESP8266 into the computer via the USB port. This
+		should be done before the next step so that the serial port can be
+		detected.</li>
+	<li>Launch ESPlorer (Windows: run: <code>esplorer.bat</code>
+		Linux: run <code>java -jar ESPlorer.jar</code>)
+	</li>
 	<li>Connect to the ESP8266: select the correct serial port, set
 		the speed to 115200, hit "Open". You should see the something like the
 		window below, with a '&gt; ' prompt. If not, you can press the reset
@@ -60,25 +62,27 @@
 </ul>
 <p>
 	<a href="images/esplorer-connect_0.png"><img
-		src="images/esplorer-connect_0.png"
-		alt="ESPlorer connection diagram" height="704" width="1024" /></a>
+		src="images/esplorer-connect_0.png" alt="ESPlorer connection diagram"
+		height="704" width="1024" /></a>
 </p>
 <ul>
 	<li>In the bottom right panel (left of the "Send" button), enter
 		the following, hitting "Send" after each line</li>
-	<ul><code>
-		<li>red=3</li>
-		<li>green=4</li>
-		<li>blue=5</li>
-		<li>gpio.mode(red, gpio.OUTPUT) -- (this sets the pin denoted by
-			the led variable to be an output)</li>
-		<li>gpio.mode(green, gpio.OUTPUT)</li>
-		<li>gpio.mode(blue, gpio.OUTPUT)</li>
-		<li>gpio.write(red, gpio.LOW) -- (the led should turn off)</li>
-		<li>gpio.write(green, gpio.LOW)</li>
-		<li>gpio.write(blue, gpio.LOW)</li>
-		<li>gpio.write(red, gpio.HIGH) -- (the led should turn on)</li>
-	</code></ul>
+	<ul>
+		<code>
+			<li>red=3</li>
+			<li>green=4</li>
+			<li>blue=5</li>
+			<li>gpio.mode(red, gpio.OUTPUT) -- (this sets the pin denoted by
+				the led variable to be an output)</li>
+			<li>gpio.mode(green, gpio.OUTPUT)</li>
+			<li>gpio.mode(blue, gpio.OUTPUT)</li>
+			<li>gpio.write(red, gpio.LOW) -- (the led should turn off)</li>
+			<li>gpio.write(green, gpio.LOW)</li>
+			<li>gpio.write(blue, gpio.LOW)</li>
+			<li>gpio.write(red, gpio.HIGH) -- (the led should turn on)</li>
+		</code>
+	</ul>
 	<li>What happened? Why do you think that happened? How could you
 		fix it without changing the software?</li>
 	<li>How do you get the other colours to light?</li>
@@ -110,11 +114,13 @@
 	<li>Connect S on the switch to D1 on the ESP8266 with a coloured
 		wire</li>
 	<li>Enter the following:</li>
-	<ul><code>
-		<li>button = 1</li>
-		<li>gpio.mode(button, gpio.INPUT, gpio.PULLUP)</li>
-		<li>print(gpio.read(button))</li>
-	</code></ul>
+	<ul>
+		<code>
+			<li>button = 1</li>
+			<li>gpio.mode(button, gpio.INPUT, gpio.PULLUP)</li>
+			<li>print(gpio.read(button))</li>
+		</code>
+	</ul>
 	<li>What does it print? Repeat the last command while holding down
 		the button. What does it print now? Why does it behave like that?</li>
 </ul>
@@ -145,11 +151,16 @@
 		documentation, can you alter the program to only send a message when
 		the button is pressed?
 	</li>
+	<li>Do you sometimes see the same message come through multiple
+		times when the button is pressed? This is called "bouncing", and is an
+		artifact of the switch mechanism. Later exercises will deal with this
+		in software.</li>
 </ul>
 <h2>References</h2>
 <ul>
 	<li><a
 		href="https://nodemcu.readthedocs.io/en/master/en/modules/gpio/">https://nodemcu.readthedocs.io/en/master/en/modules/gpio/</a></li>
+	<li><a href="https://en.wikipedia.org/wiki/Switch#Contact_bounce">https://en.wikipedia.org/wiki/Switch#Contact_bounce</a></li>
 </ul>
 <h1>Exercise 4 - Toggling an LED</h1>
 <p>In home automation, we often want to toggle the state of
@@ -170,10 +181,10 @@
 		href="https://nodemcu.readthedocs.io/en/master/en/modules/tmr/#tmrdelay">https://nodemcu.readthedocs.io/en/master/en/modules/tmr/</a></li>
 </ul>
 <h1>Exercise 5 - Getting connected</h1>
-<p>Congratulations! If you've made it this far, you have learnt enough
-	to work with the bulk of the modules in your kit. Now, the real power
-	of the ESP8266 is that it can connect to Wifi networks, and interact
-	with other computers.</p>
+<p>Congratulations! If you've made it this far, you have learnt
+	enough to work with the bulk of the modules in your kit. Now, the real
+	power of the ESP8266 is that it can connect to Wifi networks, and
+	interact with other computers.</p>
 <p>First, let's see what wifi networks are around.</p>
 <ul>
 	<li>Open &amp; save "wifi-list.lua"</li>
@@ -202,20 +213,19 @@
 	<li>Create a new connection by hitting the green + in the top left
 		(the default connection settings should work)</li>
 	<li><a href="images/paho-connection.png"><img
-			src="images/paho-connection.png" alt="" height="562"
-			width="1024" /></a></li>
+			src="images/paho-connection.png" alt="" height="562" width="1024" /></a></li>
 	<li>Hit connect, the log in the right should say "Connected"</li>
 	<li>Create a subscription by hitting the green '+' under
 		Subscriptions, then enter '#' as the topic (this shows all messages)</li>
 	<li><a href="images/paho-subscription.png"><img
-			src="images/paho-subscription.png"
-			alt="Adding a Paho subscription" height="562" width="1024" /></a></li>
+			src="images/paho-subscription.png" alt="Adding a Paho subscription"
+			height="562" width="1024" /></a></li>
 	<li>Hit the 'Subscribe' button, the log should show "Subscribed #"</li>
 	<li>Publish a test message with the topic "test" and the message
 		"hello", the log should the message being published and received</li>
 	<li><a href="images/paho-publish.png"><img
-			src="images/paho-publish.png"
-			alt="Pulishing a message in Paho" height="562" width="1024" /></a></li>
+			src="images/paho-publish.png" alt="Pulishing a message in Paho"
+			height="562" width="1024" /></a></li>
 	<li>Identify the IP address of your computer:</li>
 	<ul>
 		<li>In a shell/command prompt, for Windows, run "ipconfig /all",
@@ -281,7 +291,7 @@
 	going to use NodeRed to coordinate the interactions. First, let's use
 	NodeRed to toggle our LED when our button is pressed.</p>
 <ul>
-    <li>Open &amp; save "mqtt-buzzer.lua"</li>
+	<li>Open &amp; save "mqtt-buzzer.lua"</li>
 	<li>Windows: From a Node-JS Command Prompt, run <span
 		style="font-family: courier new, courier;">node-red</span> Linux: Run
 		<span style="font-family: courier new, courier;">node-red</span>, then
@@ -290,12 +300,10 @@
 		flow in the centre</li>
 	<li>Double click on the new node, then add a new server</li>
 	<li><a href="images/nodered-mqtt.png"><img
-			src="images/nodered-mqtt.png" alt="" height="562"
-			width="1024" /></a></li>
+			src="images/nodered-mqtt.png" alt="" height="562" width="1024" /></a></li>
 	<li>Set the hostname to 'localhost' and click Add</li>
 	<li><a href="images/nodered-mqtt-config.png"><img
-			src="images/nodered-mqtt-config.png" alt="" height="562"
-			width="1024" /></a></li>
+			src="images/nodered-mqtt-config.png" alt="" height="562" width="1024" /></a></li>
 	<li>Set the topic to the button topic from your device, the QoS to
 		0, and the name to "Button"</li>
 	<li><a href="images/nodered-mqtt-button.png"><img
@@ -304,8 +312,7 @@
 	<li>Drag on output/debug node from the left panel, and drag a
 		connection from the button to the new debug node</li>
 	<li><a href="images/nodered-debug.png"><img
-			src="images/nodered-debug.png" alt="" height="562"
-			width="1024" /></a></li>
+			src="images/nodered-debug.png" alt="" height="562" width="1024" /></a></li>
 	<li>Press Deploy and wait for the "Successfully deployed" message.
 		You should see a "Connected" message below the button</li>
 	<li>Select the Debug tab on the right panel</li>
@@ -314,8 +321,7 @@
 	<li>Drag an output MQTT node into the flow, Set the topic to your
 		blue LED</li>
 	<li><a href="images/nodered-mqtt-led.png"><img
-			src="images/nodered-mqtt-led.png" alt="" height="562"
-			width="1024" /></a></li>
+			src="images/nodered-mqtt-led.png" alt="" height="562" width="1024" /></a></li>
 	<li>Connect the new node to your button</li>
 	<li>Deploy your changes</li>
 	<li>Press the button on your device, what happens?</li>
@@ -325,7 +331,8 @@
 	<li>Drag in a function node, Name it "Toggle" and add the
 		following</li>
 	<ul>
-		<li><pre><code>// Only toggle the LED if the button is pressed
+		<li><pre>
+				<code>// Only toggle the LED if the button is pressed
 if (msg.payload == "1") {
     // Set an inital value
     context.state = context.state | false;
@@ -339,11 +346,11 @@ if (msg.payload == "1") {
     return msg;
 } else {
     return;
-}</code></pre></li>
+}</code>
+			</pre></li>
 	</ul>
 	<li><a href="images/nodered-toggle.png"><img
-			src="images/nodered-toggle.png" alt="" height="562"
-			width="1024" /></a></li>
+			src="images/nodered-toggle.png" alt="" height="562" width="1024" /></a></li>
 	<li>Connect the toggle between the button and the blue LED</li>
 	<li>Connect the debug module to the toggle output</li>
 	<li>Press the button on your devices, what happens with the debug
