@@ -1,6 +1,7 @@
 dofile("settings.lua")
 
 myMACAddress = wifi.sta.getmac()
+myClientID = "ESP8266-" .. myMACAddress
 
 buttonUser = 1
 buttonTopic = "buttons/" .. myMACAddress
@@ -35,10 +36,10 @@ local function mqttConnected(client)
 
     print("Publishing button presses at '" .. buttonTopic .. "'")
 
-    print("Listening for red LED requests at '" .. blueTopic .. "'")
+    print("Listening for red LED requests at '" .. redTopic .. "'")
     mqttClient:subscribe(redTopic, 0)
 
-    print("Listening for green LED requests at '" .. blueTopic .. "'")
+    print("Listening for green LED requests at '" .. greenTopic .. "'")
     mqttClient:subscribe(greenTopic, 0)
 
     print("Listening for blue LED requests at '" .. blueTopic .. "'")
@@ -146,7 +147,7 @@ local function receiveMqttMessage(connection, topic, message)
 end
 
 local function setupMqtt()
-    mqttClient = mqtt.Client("myclient", 120, mqttUser, mqttPassword)
+    mqttClient = mqtt.Client(myClientID, 120, mqttUser, mqttPassword)
     
     mqttClient:on("connect", mqttConnected)
     mqttClient:on("offline", mqttDisconnected)
