@@ -271,40 +271,40 @@
 	topic. To receive messages, we need to tell the server which topics we
 	want to listen for.</p>
 <ol>
-	<li>On Windows, doubleclick on
-		esp-workshop\windows_x64\mosquitto\mosquitto.exe (this will start a
-		black window), on Linux, in a new shell, type 'mosquitto'</li>
-	<li>On Windows, doubleclick on esp-workshop\windows_x64\paho.exe,
-		on Linux, run 'esp-workshop/linux_x64/paho'</li>
-	<li>Create a new connection by hitting the green + in the top left
-		(the default connection settings should work)
-	<p><a href="images/paho-connection.png"><img
-			src="images/paho-connection.png" alt="" height="562" width="1024" /></a></p></li>
-	<li>Hit connect, the log in the right should say "Connected"</li>
-	<li>Create a subscription by hitting the green '+' under
-		Subscriptions, then enter '#' as the topic (this shows all messages)
-	<p><a href="images/paho-subscription.png"><img
-			src="images/paho-subscription.png" alt="Adding a Paho subscription"
-			height="562" width="1024" /></a></p></li>
-	<li>Hit the 'Subscribe' button, the log should show "Subscribed #"</li>
-	<li>Publish a test message with the topic "test" and the message
-		"hello", the log should the message being published and received
-	<p><a href="images/paho-publish.png"><img
-			src="images/paho-publish.png" alt="Pulishing a message in Paho"
-			height="562" width="1024" /></a></p></li>
-	<li>Identify the IP address of your computer:</li>
-	<ul>
-		<li>In a shell/command prompt, for Windows, run "ipconfig /all",
-			for Linux, run "ifconfig -a"</li>
-		<li>Write down the IP address of the network interface you are
-			using for the workshop (probably a wireless interface, wlXXX in
-			Linux)</li>
-	</ul>
-	<li>Edit settings.lua and enter the IP address for
-		mqttServerAddress (replace xx.xx.xx.xx)</li>
-	<li>Open &amp; save "hello-mqtt.lua"</li>
-	<li>You should see a new received message from the ESP8266</li>
-	<li>Can you change the topic and message that the device sends?</li>
+    <li>On Windows, doubleclick on
+        <code>esp-workshop\windows_x64\mosquitto\mosquitto.exe</code> (this will start a
+        black window), on Linux, in a new shell, type <code>mosquitto</code></li>
+    <li>On Windows, doubleclick on <code>esp-workshop\windows_x64\paho.exe</code>,
+        on Linux, run <code>esp-workshop/linux_x64/paho</code></li>
+    <li>Create a new connection by hitting the green + in the top left
+        (the default connection settings should work)
+    <p><a href="images/paho-connection.png"><img
+            src="images/paho-connection.png" alt="" height="562" width="1024" /></a></p></li>
+    <li>Hit connect, the log in the right should say "Connected"</li>
+    <li>Create a subscription by hitting the green '+' under
+        Subscriptions, then enter '#' as the topic (this shows all messages)
+    <p><a href="images/paho-subscription.png"><img
+            src="images/paho-subscription.png" alt="Adding a Paho subscription"
+            height="562" width="1024" /></a></p></li>
+    <li>Hit the 'Subscribe' button, the log should show "Subscribed #"</li>
+    <li>Publish a test message with the topic "test" and the message
+        "hello", the log should the message being published and received
+    <p><a href="images/paho-publish.png"><img
+            src="images/paho-publish.png" alt="Pulishing a message in Paho"
+            height="562" width="1024" /></a></p></li>
+    <li>Identify the IP address of your computer:</li>
+    <ul>
+        <li>In a shell/command prompt, for Windows, run <code>ipconfig /all</code>,
+            for Linux, run <code>ifconfig -a</code></li>
+        <li>Write down the IP address of the network interface you are
+            using for the workshop (probably a wireless interface, wlXXX in
+            Linux)</li>
+    </ul>
+    <li>Edit settings.lua and enter the IP address for
+        mqttServerAddress (replace xx.xx.xx.xx)</li>
+    <li>Open &amp; save "hello-mqtt.lua"</li>
+    <li>You should see a new received message from the ESP8266</li>
+    <li>Can you change the topic and message that the device sends?</li>
 </ol>
 <h2>References</h2>
 <ul>
@@ -372,9 +372,8 @@
 	going to use NodeRed to coordinate the interactions. First, let's use
 	NodeRed to toggle our LED when our button is pressed.</p>
 <ol>
-    <li>Windows: From a Node-JS Command Prompt, run <span
-        style="font-family: courier new, courier;">node-red</span> Linux: Run
-        <span style="font-family: courier new, courier;">node-red</span>, then
+    <li>Windows: From a Node-JS Command Prompt, run <code>node-red</code> Linux: Run
+        <code>node-red</code>, then
         point the FireFox web browser at <a href="http://localhost:1880">http://localhost:1880</a></li>
     <li>Drag an Input MQTT node from the left panel to the current
         flow in the centre</li>
