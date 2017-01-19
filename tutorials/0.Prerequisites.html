@@ -11,12 +11,12 @@
 		<li>Download or clone a copy of the workshop repository to your
 			home directory, from <a
 			href="https://github.com/InfernoEmbedded/esp-workshop">https://github.com/InfernoEmbedded/esp-workshop</a>.<br />
-			<code>git clone https://github.com/InfernoEmbedded/crosstool-ng.git</code>
+			<code>git clone https://github.com/InfernoEmbedded/esp-workshop.git</code>
 		</li>
 		<li>If you have a firewall enabled, allow traffic on port 1883
 			(MQTT)</li>
 		<li>Install NodeJS 4 (not 3 or 5). A Windows installer is saved in
-			esp-workshop/windows_x64 - <a
+			esp-workshop/windows_x64, A macOS installer is saved in esp-workshop/macOS_x64 - <a
 			href="https://nodejs.org/en/download/package-manager/">https://nodejs.org/en/download/package-manager/</a>
 		</li>
 		<li>Install NodeRed from <a
@@ -40,6 +40,17 @@
 		<li>Add your user the the dialout group so you can access the
 			serial port (edit /etc/group, <code>sudo gpasswd -a
 				${USER} dialout &amp;&amp; newgrp dialout</code>)
+		</li>
+	</ol>
+	<h2>macOS</h2>
+	<ol>
+		<li>Install CH341 macOS Drivers, saved in
+			esp-workshop/macOS_x64/drivers - <a
+			href="https://github.com/jimaobian/CH34x_Install_V1.3">https://github.com/jimaobian/CH34x_Install_V1.3</a>
+		</li>
+		<li>Install Mosquitto (Use <a href=http://brew.sh/>Home Brew</a> 
+			 to install mosquitto: <code>brew install mosquitto)</code></li>
+		<li>Install Java Runtime Environment - <a 			href=https://java.com/en/download/mac_download.jsp>https://java.com/en/download/mac_download.jsp</a>
 		</li>
 	</ol>
 	<h2>Others</h2>

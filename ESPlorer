@@ -1,0 +1,14 @@
+#!/bin/bash
+ESPLORER=ESPlorer.jar
+JAVA=`which java`
+if [ $? -eq 0 ]; then
+    if [ -r ESPlorer.jar ]; then
+        $JAVA -jar $ESPLORER
+    else
+        echo "Unable to find the $ESPLORER jar file."
+        exit 1
+    fi
+else
+    echo "$0: ERROR: Unable to find java."
+    exit 1
+fi
